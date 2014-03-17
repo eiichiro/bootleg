@@ -116,6 +116,23 @@ public class RouteTest {
 		assertThat(response.getStatus(), is(200));
 		assertThat(response.getContent(), is("method1"));
 		
+		request.setURI("/bootleg/RouteTestEndpoint/method1/");
+		req = request.generate();
+		System.out.println(req);
+		res = tester.getResponses(req);
+		System.out.println(res);
+		response.parse(res);
+		assertThat(response.getStatus(), is(404));
+		
+		request.setURI("/bootleg/path/to/RouteTestEndpoint/method1");
+		req = request.generate();
+		System.out.println(req);
+		res = tester.getResponses(req);
+		System.out.println(res);
+		response.parse(res);
+		assertThat(response.getStatus(), is(200));
+		assertThat(response.getContent(), is("method1"));
+		
 		request.setURI("/bootleg/RouteTestEndpoint/method3");
 		req = request.generate();
 		System.out.println(req);

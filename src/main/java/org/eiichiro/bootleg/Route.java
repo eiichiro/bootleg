@@ -61,9 +61,8 @@ public class Route implements Predicate<WebContext> {
 	 * URI is matched to the URI template, the corresponding Web endpoint method 
 	 * is set to the current HTTP request processing context.</li>
 	 * <li>If the requested URI is not matched to any URI template, identifies 
-	 * Web endpoint class and method from the cache loaded on ahead according to 
-	 * the default convention 
-	 * (/&lt;context-path&gt;/&lt;simple-name-of-endpoint-class&gt;/&lt;endpoint-method&gt;).
+	 * Web endpoint class and method according to the default URI convention 
+	 * (URI ends with /.../&lt;simple-name-of-the-endpoint-class&gt;/&lt;endpoint-method&gt;).
 	 * </li>
 	 * <li>If any Web endpoint method is not identified, the request is 
 	 * forwarded to the next filter chain.</li>
@@ -139,27 +138,33 @@ public class Route implements Predicate<WebContext> {
 				}
 			}
 			
+			if (uri.endsWith("/")) {
+				logger.debug("URI [" + request.getRequestURI() + "] is not correlated with any Web endpoint");
+				context.chain().doFilter(request, context.response());
+				return false;
+			}
+			
 			String[] segments = uri.split("/");
 			
-			if (segments.length != 2) {
+			if (segments.length < 2) {
 				logger.debug("URI [" + request.getRequestURI() + "] is not correlated with any Web endpoint");
-				logger.debug("The requested URI pattern must be " +
-						"[/<context-path>/<simple-name-of-endpoint-class>/<endpoint-method>] or " + 
+				logger.debug("The requested URI pattern must end with " +
+						"[/.../<simple-name-of-the-endpoint-class>/<endpoint-method>] or " + 
 						"correlated with any Web endpoint in the routing configuration");
 				context.chain().doFilter(request, context.response());
 				return false;
 			}
 			
-			Class<?> endpoint = endpoints.get(segments[0].toLowerCase());
+			Class<?> endpoint = endpoints.get(segments[segments.length - 2].toLowerCase());
 			
 			if (endpoint == null) {
-				logger.warn("Web endpoint class is not found: Simple class name [" + segments[0] + "]");
+				logger.warn("Web endpoint class is not found: Simple class name [" + segments[segments.length - 2] + "]");
 				context.chain().doFilter(request, context.response());
 				return false;
 			}
 			
 			for (Method method : endpoint.getMethods()) {
-				if (method.getName().compareToIgnoreCase(segments[1]) == 0) {
+				if (method.getName().compareToIgnoreCase(segments[segments.length - 1]) == 0) {
 					context.method(method);
 					logger.debug("Web endpoint method is ["
 							+ method.getDeclaringClass().getName()
@@ -168,7 +173,7 @@ public class Route implements Predicate<WebContext> {
 				}
 			}
 			
-			logger.warn("Web endpoint method is not found: Method name [" + segments[1] + "]");
+			logger.warn("Web endpoint method is not found: Method name [" + segments[segments.length - 1] + "]");
 			context.chain().doFilter(request, context.response());
 			return false;
 		} catch (Exception e) {
