@@ -21,11 +21,12 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.ServletContext;
 
@@ -226,7 +227,14 @@ public class DefaultConfiguration implements Configuration {
 						}
 						
 						ClassResolver<CtClass> resolver = new CtClassClassResolver(paths);
-						Collection<Class<?>> endpoints = new HashSet<Class<?>>();
+						Set<Class<?>> endpoints = new TreeSet<Class<?>>(new Comparator<Class<?>>() {
+
+							@Override
+							public int compare(Class<?> o1, Class<?> o2) {
+								return o1.getName().compareTo(o2.getName());
+							}
+							
+						});
 						
 						for (CtClass ctClass : resolver.resolveByAnnotation(Endpoint.class)) {
 							try {
