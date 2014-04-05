@@ -33,13 +33,13 @@ public class RouteTestConfiguration extends DefaultConfiguration {
 	public Routing routing() {
 		Routing routing = super.routing();
 		routing.ignore("*/method2");
-		routing.add("me/th/od2", org.eiichiro.bootleg.RouteTestEndpoint.class, "method2");
+		routing.add("/me/th/od2", org.eiichiro.bootleg.RouteTestEndpoint.class, "method2");
 		
 		// 0.4.0
-		routing.add(Verb.GET, "path/to/endpoint/method", org.eiichiro.bootleg.RouteTestEndpoint.class, "method1");
-		routing.add(Verb.POST, "path/to/endpoint/method", org.eiichiro.bootleg.RouteTestEndpoint.class, "method2");
-		routing.add(Verb.GET, "path/to/endpoint/m", org.eiichiro.bootleg.RouteTestEndpoint.class, "method1");
-		routing.add("path/to/endpoint/m", org.eiichiro.bootleg.RouteTestEndpoint.class, "method2");
+		routing.add(Verb.GET, "/path/to/endpoint/method", org.eiichiro.bootleg.RouteTestEndpoint.class, "method1");
+		routing.add(Verb.POST, "/path/to/endpoint/method", org.eiichiro.bootleg.RouteTestEndpoint.class, "method2");
+		routing.add(Verb.GET, "/path/to/endpoint/m", org.eiichiro.bootleg.RouteTestEndpoint.class, "method1");
+		routing.add("/path/to/endpoint/m", org.eiichiro.bootleg.RouteTestEndpoint.class, "method2");
 		return routing;
 	}
 	

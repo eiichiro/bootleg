@@ -102,7 +102,7 @@ public class Route implements Predicate<WebContext> {
 		}
 		
 		HttpServletRequest request = context.request();
-		String uri = request.getRequestURI().substring((request.getContextPath() + "/").length());
+		String uri = request.getRequestURI().substring((request.getContextPath()).length());
 		
 		try {
 			if (routing.ignores(uri)) {

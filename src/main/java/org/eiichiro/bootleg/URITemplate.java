@@ -46,6 +46,8 @@ public class URITemplate implements Comparable<URITemplate> {
 	public URITemplate(String pattern) {
 		Preconditions.checkArgument(pattern != null, 
 				"Parameter 'pattern' must not be [" + pattern + "]");
+		Preconditions.checkArgument(pattern.startsWith("/"), 
+				"Parameter 'pattern' must start with [/]");
 		char c = '{';
 		int start = 0;
 		String substring = "";

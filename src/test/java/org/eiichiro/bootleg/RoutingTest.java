@@ -49,19 +49,19 @@ public class RoutingTest {
 	@Test
 	public void testAdd() {
 		Routing routing = new Routing();
-		routing.add("path/to/endpoint/method", RoutingTestEndpoint.class, "method1");
-		assertNotNull(routing.route("path/to/endpoint/method"));
-		assertTrue(routing.route("path/to/endpoint/notfound").isEmpty());
+		routing.add("/path/to/endpoint/method", RoutingTestEndpoint.class, "method1");
+		assertNotNull(routing.route("/path/to/endpoint/method"));
+		assertTrue(routing.route("/path/to/endpoint/notfound").isEmpty());
 		
 		routing = new Routing();
-		routing.add("path/to/*", RoutingTestEndpoint.class, "method1");
-		routing.add("path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(null).getName(), is("method2"));
+		routing.add("/path/to/*", RoutingTestEndpoint.class, "method1");
+		routing.add("/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(null).getName(), is("method2"));
 		
 		routing = new Routing();
-		routing.add("path/to/endpoint/m*", RoutingTestEndpoint.class, "method1");
-		routing.add("path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(null).getName(), is("method1"));
+		routing.add("/path/to/endpoint/m*", RoutingTestEndpoint.class, "method1");
+		routing.add("/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(null).getName(), is("method1"));
 		
 		try {
 			routing.add(null, null, null);
@@ -72,7 +72,15 @@ public class RoutingTest {
 		}
 		
 		try {
-			routing.add("", null, null);
+			routing.add("path/to/endpoint/method", null, null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertThat(e.getMessage(), is("Parameter 'pattern' must start with [/]"));
+			e.printStackTrace();
+		}
+		
+		try {
+			routing.add("/", null, null);
 			fail();
 		} catch (IllegalArgumentException e) {
 			assertThat(e.getMessage(), is("Parameter 'endpoint' must not be [null]"));
@@ -80,7 +88,7 @@ public class RoutingTest {
 		}
 		
 		try {
-			routing.add("", RoutingTestEndpoint.class, null);
+			routing.add("/", RoutingTestEndpoint.class, null);
 			fail();
 		} catch (IllegalArgumentException e) {
 			assertThat(e.getMessage(), is("Parameter 'method' must not be [null]"));
@@ -88,7 +96,7 @@ public class RoutingTest {
 		}
 		
 		try {
-			routing.add("path/to/endpoint/method", RoutingTestEndpoint.class, "notfound");
+			routing.add("/path/to/endpoint/method", RoutingTestEndpoint.class, "notfound");
 			fail();
 		} catch (IllegalArgumentException e) {
 			assertThat(e.getMessage(), is(
@@ -99,84 +107,84 @@ public class RoutingTest {
 		
 		// 0.4.0
 		routing = new Routing();
-		routing.add(Verb.GET, "path/to/endpoint/method", RoutingTestEndpoint.class, "method1");
-		routing.add(Verb.POST, "path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.POST).getName(), is("method2"));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.PUT));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(null));
+		routing.add(Verb.GET, "/path/to/endpoint/method", RoutingTestEndpoint.class, "method1");
+		routing.add(Verb.POST, "/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.POST).getName(), is("method2"));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.PUT));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(null));
 		
 		routing = new Routing();
-		routing.add(Verb.GET, "path/to/endpoint/m*", RoutingTestEndpoint.class, "method1");
-		routing.add(Verb.POST, "path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.POST));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(null));
-		assertThat(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.POST).getName(), is("method2"));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.PUT));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(null));
+		routing.add(Verb.GET, "/path/to/endpoint/m*", RoutingTestEndpoint.class, "method1");
+		routing.add(Verb.POST, "/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.POST));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(null));
+		assertThat(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.POST).getName(), is("method2"));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.PUT));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(null));
 		
 		routing = new Routing();
-		routing.add(Verb.GET, "path/to/e*", RoutingTestEndpoint.class, "method1");
-		routing.add(Verb.POST, "path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.POST).getName(), is("method2"));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.GET));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(null));
-		assertThat(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.GET).getName(), is("method1"));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.POST));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(null));
+		routing.add(Verb.GET, "/path/to/e*", RoutingTestEndpoint.class, "method1");
+		routing.add(Verb.POST, "/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.POST).getName(), is("method2"));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.GET));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(null));
+		assertThat(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.GET).getName(), is("method1"));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.POST));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(null));
 		
 		routing = new Routing();
-		routing.add(Verb.GET, "path/to/endpoint/method", RoutingTestEndpoint.class, "method1");
-		routing.add(Verb.GET, "path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method2"));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.POST));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(null));
+		routing.add(Verb.GET, "/path/to/endpoint/method", RoutingTestEndpoint.class, "method1");
+		routing.add(Verb.GET, "/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method2"));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.POST));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(null));
 		
 		routing = new Routing();
-		routing.add(Verb.GET, "path/to/endpoint/m*", RoutingTestEndpoint.class, "method1");
-		routing.add(Verb.GET, "path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.POST));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(null));
-		assertThat(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.GET).getName(), is("method2"));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.POST));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(null));
+		routing.add(Verb.GET, "/path/to/endpoint/m*", RoutingTestEndpoint.class, "method1");
+		routing.add(Verb.GET, "/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.POST));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(null));
+		assertThat(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.GET).getName(), is("method2"));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.POST));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(null));
 		
 		routing = new Routing();
-		routing.add(Verb.GET, "path/to/e*", RoutingTestEndpoint.class, "method1");
-		routing.add(Verb.GET, "path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method2"));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.POST));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(null));
-		assertThat(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.GET).getName(), is("method1"));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.POST));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(null));
+		routing.add(Verb.GET, "/path/to/e*", RoutingTestEndpoint.class, "method1");
+		routing.add(Verb.GET, "/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method2"));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.POST));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(null));
+		assertThat(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.GET).getName(), is("method1"));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.POST));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(null));
 		
 		routing = new Routing();
-		routing.add(Verb.GET, "path/to/endpoint/method", RoutingTestEndpoint.class, "method1");
-		routing.add("path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.POST));
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(null).getName(), is("method2"));
+		routing.add(Verb.GET, "/path/to/endpoint/method", RoutingTestEndpoint.class, "method1");
+		routing.add("/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.POST));
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(null).getName(), is("method2"));
 		
 		routing = new Routing();
-		routing.add(Verb.GET, "path/to/endpoint/m*", RoutingTestEndpoint.class, "method1");
-		routing.add("path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.POST));
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(null));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.POST));
-		assertThat(routing.route("path/to/endpoint/method").get(1).getValue().get(null).getName(), is("method2"));
+		routing.add(Verb.GET, "/path/to/endpoint/m*", RoutingTestEndpoint.class, "method1");
+		routing.add("/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.GET).getName(), is("method1"));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.POST));
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(null));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.POST));
+		assertThat(routing.route("/path/to/endpoint/method").get(1).getValue().get(null).getName(), is("method2"));
 		
 		routing = new Routing();
-		routing.add(Verb.GET, "path/to/e*", RoutingTestEndpoint.class, "method1");
-		routing.add("path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
-		assertNull(routing.route("path/to/endpoint/method").get(0).getValue().get(Verb.GET));
-		assertThat(routing.route("path/to/endpoint/method").get(0).getValue().get(null).getName(), is("method2"));
-		assertThat(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.GET).getName(), is("method1"));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(Verb.POST));
-		assertNull(routing.route("path/to/endpoint/method").get(1).getValue().get(null));
+		routing.add(Verb.GET, "/path/to/e*", RoutingTestEndpoint.class, "method1");
+		routing.add("/path/to/endpoint/method", RoutingTestEndpoint.class, "method2");
+		assertNull(routing.route("/path/to/endpoint/method").get(0).getValue().get(Verb.GET));
+		assertThat(routing.route("/path/to/endpoint/method").get(0).getValue().get(null).getName(), is("method2"));
+		assertThat(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.GET).getName(), is("method1"));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(Verb.POST));
+		assertNull(routing.route("/path/to/endpoint/method").get(1).getValue().get(null));
 	}
 
 	/**

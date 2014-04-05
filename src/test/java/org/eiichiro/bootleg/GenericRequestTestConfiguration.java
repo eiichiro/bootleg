@@ -26,7 +26,7 @@ public class GenericRequestTestConfiguration extends DefaultConfiguration {
 	@Override
 	public Routing routing() {
 		Routing routing = super.routing();
-		routing.add("{int}/{char}/{strings}/{type1}/{type2}/{type3}/{userDefinedType3Value}", GenericRequestTestEndpoint.class, "testPath");
+		routing.add("/{int}/{char}/{strings}/{type1}/{type2}/{type3}/{userDefinedType3Value}", GenericRequestTestEndpoint.class, "testPath");
 		return routing;
 	}
 	

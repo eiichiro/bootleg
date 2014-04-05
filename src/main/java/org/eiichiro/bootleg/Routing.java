@@ -31,9 +31,6 @@ import com.google.common.base.Preconditions;
 
 /**
  * URL routing configuration of the current application.
- * {@code Routing} instance for the current application is passed to 
- * {@code Configuration#routing(Routing)} method by Bootleg and you can configure 
- * the configuration by overriding this method in your own {@link Configuration} class.
  * 
  * @see Configuration
  * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
@@ -53,14 +50,14 @@ public class Routing {
 	 * <pre>
 	 * {@code @Override}
 	 * public void routing(Routing routing) {
-	 *     routing.add("user/{id}/*", User.class, "handle");
+	 *     routing.add("/user/{id}/*", User.class, "handle");
 	 * }
 	 * </pre>
 	 * <pre>
 	 * {@code}
 	 * public class User {
 	 * 
-	 *     // 'user/{id}/*' is routed to this method.
+	 *     // '/user/{id}/*' is routed to this method.
 	 *     public void handle({@code} String id) {
 	 *         ...
 	 * </pre>
@@ -85,14 +82,14 @@ public class Routing {
 	 * <pre>
 	 * {@code @Override}
 	 * public void routing(Routing routing) {
-	 *     routing.add("user/{id}/*", User.class, "handle");
+	 *     routing.add("/user/{id}/*", User.class, "handle");
 	 * }
 	 * </pre>
 	 * <pre>
 	 * {@code}
 	 * public class User {
 	 * 
-	 *     // 'user/{id}/*' is routed to this method.
+	 *     // '/user/{id}/*' is routed to this method.
 	 *     public void handle({@code} String id) {
 	 *         ...
 	 * </pre>
@@ -109,6 +106,8 @@ public class Routing {
 	public void add(Verb verb, String pattern, Class<?> endpoint, String method) {
 		Preconditions.checkArgument(pattern != null, 
 				"Parameter 'pattern' must not be [" + pattern + "]");
+		Preconditions.checkArgument(pattern.startsWith("/"), 
+				"Parameter 'pattern' must start with [/]");
 		Preconditions.checkArgument(endpoint != null, 
 				"Parameter 'endpoint' must not be [" + endpoint + "]");
 		Preconditions.checkArgument(method != null, 
