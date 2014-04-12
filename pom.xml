@@ -10,7 +10,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.eiichiro.bootleg</groupId>
   <artifactId>bootleg</artifactId>
-  <version>0.5.2-SNAPSHOT</version>
+  <version>0.5.1-SNAPSHOT</version>
   <name>Bootleg</name>
   <description>Java Web Components</description>
   <url>http://bootleg.eiichiro.org/</url>
