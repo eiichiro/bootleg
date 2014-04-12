@@ -9,7 +9,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.eiichiro.bootleg</groupId>
-  <artifactId>bootleg-SNAPSHOT</artifactId>
+  <artifactId>bootleg</artifactId>
   <version>0.5.1</version>
   <name>Bootleg</name>
   <description>Java Web Components</description>
