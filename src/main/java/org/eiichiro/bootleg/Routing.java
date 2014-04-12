@@ -33,7 +33,7 @@ import com.google.common.base.Preconditions;
  * URL routing configuration of the current application.
  * 
  * @see Configuration
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class Routing {
 

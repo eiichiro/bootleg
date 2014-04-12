@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
  * {@code Query} qualifies the annotated Web endpoint method parameter to be 
  * constructed from HTTP request query string.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

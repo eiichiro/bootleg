@@ -28,7 +28,7 @@ import com.google.common.base.Preconditions;
  * URI template to route the matched HTTP request to the corresponding Web 
  * endpoint method.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class URITemplate implements Comparable<URITemplate> {
 

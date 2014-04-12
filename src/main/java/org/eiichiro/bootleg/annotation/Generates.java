@@ -28,7 +28,7 @@ import java.lang.annotation.Target;
  * automatically constructs the {@code Response} corresponding to the specified 
  * MIME media type from the method returned value.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

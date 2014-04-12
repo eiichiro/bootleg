@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
  * {@code Source} is the meta annotation to qualify an annotation as the source 
  * from which the Web endpoint method parameter is constructed.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

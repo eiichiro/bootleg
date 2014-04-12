@@ -42,7 +42,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class JSONResponseTest {
 

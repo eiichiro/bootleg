@@ -29,7 +29,7 @@ import org.eiichiro.bootleg.Types;
  * string representation, annotate the type or field with 
  * {@code @javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter(ValueTypeXmlAdapter.class)}.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class ValueTypeXmlAdapter<BoundType> extends XmlAdapter<String, BoundType> {
 

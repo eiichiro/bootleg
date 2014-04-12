@@ -28,7 +28,7 @@ import java.util.List;
  * specify your own {@code Request} implementation type by overriding 
  * {@code Configuration#requestType(String)} in your custom {@code Configuration}.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public interface Request {
 

@@ -39,7 +39,7 @@ import com.google.gson.JsonPrimitive;
  * If the requested MIME media type is 'application/json', Bootleg uses this 
  * implementation by default.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class JSONRequest extends AbstractRequest {
 

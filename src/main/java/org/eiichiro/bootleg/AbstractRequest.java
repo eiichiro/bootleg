@@ -49,7 +49,7 @@ import com.google.common.base.Function;
  * implementation and provides default behaviors common to most {@code Request} 
  * implementation classes.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public abstract class AbstractRequest implements Request {
 

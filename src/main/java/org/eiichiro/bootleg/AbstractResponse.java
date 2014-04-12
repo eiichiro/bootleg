@@ -20,7 +20,7 @@ package org.eiichiro.bootleg;
  * implementation and provides default behaviors common to most {@code Response} 
  * implementation classes.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public abstract class AbstractResponse implements Response {
 

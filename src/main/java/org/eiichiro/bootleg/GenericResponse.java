@@ -26,7 +26,7 @@ import org.eiichiro.reverb.lang.UncheckedException;
 /**
  * {@code GenericResponse} is a generic implementation of {@code Response}.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class GenericResponse extends AbstractResponse {
 

@@ -29,7 +29,7 @@ import org.eiichiro.bootleg.URITemplate;
  * the current HTTP request.
  * 
  * @see URITemplate
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

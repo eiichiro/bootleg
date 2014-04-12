@@ -23,7 +23,7 @@ import org.eiichiro.bootleg.annotation.Generates;
 import org.eiichiro.bootleg.annotation.Negotiated;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Endpoint
 public class SendTestEndpoint {

@@ -22,14 +22,14 @@ import org.eiichiro.bootleg.UserInfo;
 import org.eiichiro.bootleg.annotation.Endpoint;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Endpoint
 public class JSONResponseTestEndpoint {
 
 	public Response getJSONUserInfo() {
 		UserInfo userInfo = new UserInfo("eiichiro", "Eiichiro Uchiumi",
-				"eiichiro@eiichiro.org", "http://www.eiichiro.org/", 9,
+				"mail@eiichiro.org", "http://www.eiichiro.org/", 9,
 				"Listening to music", "Buddhist art");
 		return json(userInfo);
 	}

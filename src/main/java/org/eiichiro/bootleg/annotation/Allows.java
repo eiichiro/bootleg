@@ -29,7 +29,7 @@ import org.eiichiro.bootleg.Verb;
  * If the method is invoked with a HTTP verb not included in the verb set, 
  * Bootleg returns HTTP 405 ("Method Not Allowed") to the client.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

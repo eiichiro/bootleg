@@ -22,7 +22,7 @@ import org.eiichiro.bootleg.xml.XMLResponse;
  * An utility which has some factory methods to create {@link Response} instance 
  * to be sent to the client form Web endpoint.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public abstract class Responses {
 

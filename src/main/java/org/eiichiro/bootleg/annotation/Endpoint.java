@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
  * {@code Endpoint} represents a Web endpoint class which has remote procedures 
  * invoked by HTTP clients.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

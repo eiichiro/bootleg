@@ -41,7 +41,7 @@ import org.eiichiro.bootleg.annotation.Query;
 import org.eiichiro.bootleg.annotation.Session;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Endpoint
 public class GenericRequestTestEndpoint {

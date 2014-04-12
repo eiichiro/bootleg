@@ -32,7 +32,7 @@ import com.google.common.base.Predicate;
  * and {@code com.google.common.base.Predicate} as the processing stage.
  * This class is used for HTTP request processing by {@link BootlegFilter}.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class Pipeline<T> implements Function<T, T> {
 

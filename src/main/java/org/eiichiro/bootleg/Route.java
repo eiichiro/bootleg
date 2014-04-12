@@ -33,7 +33,7 @@ import com.google.common.base.Predicate;
  * HTTP request processing pipeline stage to route the matched HTTP request to 
  * the corresponding Web endpoint method.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class Route implements Predicate<WebContext> {
 

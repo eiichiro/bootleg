@@ -46,7 +46,7 @@ import org.slf4j.LoggerFactory;
  * &lt;/filter-mapping&gt;
  * </pre>
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class BootlegFilter implements Filter {
 

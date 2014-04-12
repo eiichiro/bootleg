@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
  * {@code Response} corresponding to the MIME media type specified in "Accept" 
  * HTTP header.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

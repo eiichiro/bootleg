@@ -19,7 +19,7 @@ package org.eiichiro.bootleg;
  * {@code EndpointInvocationFailedException} wraps the exception thrown by Web 
  * endpoint invocation.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class EndpointInvocationFailedException extends WebException {
 

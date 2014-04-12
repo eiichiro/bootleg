@@ -19,7 +19,7 @@ package org.eiichiro.bootleg;
  * {@code WebException} is thrown when the HTTP request processing pipeline is 
  * failed for any reason.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class WebException extends RuntimeException {
 

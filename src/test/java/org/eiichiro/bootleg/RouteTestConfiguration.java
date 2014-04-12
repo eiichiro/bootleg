@@ -25,7 +25,7 @@ import org.eiichiro.bootleg.Verb;
 import org.eiichiro.bootleg.annotation.Endpoint;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class RouteTestConfiguration extends DefaultConfiguration {
 

@@ -40,7 +40,7 @@ import com.google.common.base.Function;
  * If the requested MIME media type is 'application/xml', default configuration of 
  * Bootleg uses this implementation.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class XMLRequest extends AbstractRequest {
 

@@ -32,7 +32,7 @@ import org.eiichiro.reverb.lang.UncheckedException;
  * Architecture for XML Binding). UTF-8 is used for the character encoding 
  * (MIME charset) at any time.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class XMLResponse extends AbstractResponse {
 

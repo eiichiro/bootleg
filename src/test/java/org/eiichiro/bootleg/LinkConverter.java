@@ -18,7 +18,7 @@ package org.eiichiro.bootleg;
 import org.apache.commons.beanutils.converters.AbstractConverter;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class LinkConverter extends AbstractConverter {
 

@@ -31,7 +31,7 @@ import javax.servlet.ServletContext;
  * &lt;/context-param&gt;
  * </pre>
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public interface Configuration {
 

@@ -27,7 +27,7 @@ import org.eiichiro.reverb.lang.UncheckedException;
  * {@code Forward} is a {@link Response} implementation to forward HTTP request 
  * to another resource.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class Forward implements Response {
 

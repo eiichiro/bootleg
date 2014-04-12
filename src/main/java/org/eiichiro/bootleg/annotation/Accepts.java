@@ -30,7 +30,7 @@ import java.lang.annotation.Target;
  * request header is not included in the specified list, Bootleg returns 
  * HTTP 415 ("Unsupported Media Type") to the client.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

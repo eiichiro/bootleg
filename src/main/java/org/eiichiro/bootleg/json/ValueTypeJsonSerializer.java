@@ -31,7 +31,7 @@ import com.google.gson.JsonSerializer;
  * {@code ValueTypeJsonSerializer} is a custom JSON serializer for user-defined 
  * value type object.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class ValueTypeJsonSerializer<T> implements JsonSerializer<T> {
 

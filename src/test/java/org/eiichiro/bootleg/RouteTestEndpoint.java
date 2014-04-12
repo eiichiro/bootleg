@@ -18,7 +18,7 @@ package org.eiichiro.bootleg;
 import org.eiichiro.bootleg.annotation.Endpoint;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Endpoint
 public class RouteTestEndpoint {

@@ -18,7 +18,7 @@ package org.eiichiro.bootleg;
 import java.io.Serializable;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class SerializableObject implements Serializable {
 

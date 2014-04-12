@@ -72,7 +72,7 @@ import org.apache.commons.lang.ClassUtils;
 /**
  * {@code Types} is a type system utility for Bootleg built-in components.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public abstract class Types {
 

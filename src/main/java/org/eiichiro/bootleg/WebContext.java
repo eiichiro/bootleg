@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSession;
  * {@code WebContext} represents several Web contexts as packed for HTTP request 
  * processing.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class WebContext extends HashMap<Object, Object> {
 

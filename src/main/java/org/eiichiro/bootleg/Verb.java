@@ -18,7 +18,7 @@ package org.eiichiro.bootleg;
 /**
  * {@code Verb} represents HTTP verb (HTTP method).
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public enum Verb {
 

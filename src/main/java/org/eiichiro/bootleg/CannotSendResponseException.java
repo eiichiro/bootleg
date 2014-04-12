@@ -19,7 +19,7 @@ package org.eiichiro.bootleg;
  * {@code CannotSendResponseException} is thrown by {@code Receiver} when the 
  * HTTP response cannot be sent for any reason.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class CannotSendResponseException extends WebException {
 

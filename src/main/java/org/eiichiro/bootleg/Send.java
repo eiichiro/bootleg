@@ -32,7 +32,7 @@ import com.google.common.base.Predicate;
  * HTTP request processing pipeline stage to send Web endpoint invocation 
  * result to the client as HTTP response.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class Send implements Predicate<WebContext> {
 

@@ -19,7 +19,7 @@ package org.eiichiro.bootleg;
  * {@code CannotAcceptRequestException} is thrown by {@code Receiver} when the 
  * HTTP request cannot be accepted for any reason.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class CannotAcceptRequestException extends WebException {
 

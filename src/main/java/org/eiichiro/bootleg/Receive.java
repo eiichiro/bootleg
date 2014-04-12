@@ -38,7 +38,7 @@ import com.google.common.base.Predicate;
  * HTTP request processing pipeline stage to validate HTTP request and 
  * constructs Web endpoint method parameters.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class Receive implements Predicate<WebContext> {
 

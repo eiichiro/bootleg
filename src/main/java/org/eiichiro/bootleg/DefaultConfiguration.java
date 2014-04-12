@@ -48,7 +48,7 @@ import org.slf4j.LoggerFactory;
  * If you would not specify your own configuration in web.xml, Bootleg uses this 
  * configuration by default.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class DefaultConfiguration implements Configuration {
 

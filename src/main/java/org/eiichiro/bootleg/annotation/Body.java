@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
  * {@code Body} qualifies the annotated Web endpoint method parameter to be 
  * constructed from HTTP request body.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

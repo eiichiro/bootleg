@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
  * {@code Application} qualifies the annotated Web endpoint method parameter to 
  * be constructed form the application context (ServletContext).
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

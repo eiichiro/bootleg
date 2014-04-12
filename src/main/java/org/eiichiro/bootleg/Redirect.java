@@ -25,7 +25,7 @@ import org.eiichiro.reverb.lang.UncheckedException;
  * {@code Redirect} is a {@link Response} implementation to send a temporary 
  * redirect response to the client.
  * 
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class Redirect implements Response {
 

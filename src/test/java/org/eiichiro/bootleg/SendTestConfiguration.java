@@ -23,7 +23,7 @@ import org.eiichiro.bootleg.DefaultConfiguration;
 import org.eiichiro.bootleg.Response;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class SendTestConfiguration extends DefaultConfiguration {
 

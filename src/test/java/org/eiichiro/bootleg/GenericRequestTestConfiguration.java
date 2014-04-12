@@ -19,7 +19,7 @@ import org.eiichiro.bootleg.DefaultConfiguration;
 import org.eiichiro.bootleg.Routing;
 
 /**
- * @author <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>
+ * @author <a href="mailto:mail@eiichiro.org">Eiichiro Uchiumi</a>
  */
 public class GenericRequestTestConfiguration extends DefaultConfiguration {
 
