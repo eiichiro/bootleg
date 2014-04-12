@@ -103,7 +103,7 @@ public class DefaultConfigurationTest {
 		}
 		
 		for (URL url : urls) {
-			if (url.getPath().endsWith("bootleg/target/test-classes/")) {
+			if (url.getPath().endsWith("target/test-classes/")) {
 				context.setResourceBase(url.getPath());
 				Thread.currentThread().setContextClassLoader(
 						new ClassLoader(URLClassLoader.newInstance(new URL[] {
