@@ -51,7 +51,7 @@
   			<configuration>
   				<bottom><![CDATA[Copyright © 2011-2013 <a href="mailto:eiichiro@eiichiro.org">Eiichiro Uchiumi</a>. All Rights Reserved.]]></bottom>
   				<doctitle>${project.name} ${project.version} API Specifications</doctitle>
-  				<source>1.7</source>
+  				<source>1.8</source>
   			</configuration>
   		</plugin>
   	</plugins>
