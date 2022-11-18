@@ -189,39 +189,36 @@ public class DefaultConfiguration implements Configuration {
 				if (endpoints == null) {
 					try {
 						List<URL> paths = new ArrayList<>();
+						URL classes = (context != null) ? context.getResource("/WEB-INF/classes/") : null;
 						ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-						
-						if (classLoader instanceof URLClassLoader) {
+
+						if (classes != null) {
+							logger.debug("The application is running on a Servlet container "
+									+ "with the standard web application layout - "
+									+ "building the classpath from '/WEB-INF/classes/' "
+									+ "directory and '/WEB-INF/lib/*.jar' files");
+							paths.add(classes);
+
+							for (String jar : (Set<String>) context.getResourcePaths("/WEB-INF/lib/")) {
+								if (jar.endsWith(".jar")) {
+									paths.add(context.getResource(jar));
+								}
+							}
+
+						} else if (classLoader instanceof URLClassLoader) {
 							logger.debug("The application is running on URLClassLoader - "
 									+ "directly getting the classpath from its own search paths");
 							paths = Arrays.asList(((URLClassLoader) classLoader).getURLs());
 						} else {
-							URL classes = context.getResource("/WEB-INF/classes/");
+							logger.debug("The application is standalone or running on a embedded "
+									+ "Servlet container - building the classpath from "
+									+ "'java.class.path' system property");
 							
-							if (classes != null) {
-								logger.debug("The application is running on a Servlet container "
-										+ "with the standard web application layout - "
-										+ "building the classpath from '/WEB-INF/classes/' "
-										+ "directory and '/WEB-INF/lib/*.jar' files");
-								paths.add(classes);
-								
-								for (String jar : (Set<String>) context.getResourcePaths("/WEB-INF/lib/")) {
-									if (jar.endsWith(".jar")) {
-										paths.add(context.getResource(jar));
-									}
-								}
-								
-							} else {
-								logger.debug("The application is standalone or running on a embedded "
-										+ "Servlet container - building the classpath from "
-										+ "'java.class.path' system property");
-								
-								for (String path : Environment.getProperty("java.class.path").split(File.pathSeparator)) {
-									paths.add(new File(path).toURI().toURL());
-								}
+							for (String path : Environment.getProperty("java.class.path").split(File.pathSeparator)) {
+								paths.add(new File(path).toURI().toURL());
 							}
 						}
-						
+
 						for (int i = 0; i < paths.size(); i++) {
 							logger.debug("Web endpoint search path #" + (i + 1) + " [" + paths.get(i) + "]");
 						}

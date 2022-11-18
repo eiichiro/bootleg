@@ -15,26 +15,20 @@
  */
 package org.eiichiro.bootleg;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.testing.ServletTester;
-import org.eiichiro.bootleg.DefaultConfiguration;
-import org.eiichiro.bootleg.GenericRequest;
-import org.eiichiro.bootleg.GenericResponse;
-import org.eiichiro.bootleg.MediaType;
-import org.eiichiro.bootleg.Pipeline;
-import org.eiichiro.bootleg.Routing;
-import org.eiichiro.bootleg.WebContext;
 import org.eiichiro.bootleg.json.JSONRequest;
 import org.eiichiro.bootleg.json.JSONResponse;
 import org.eiichiro.bootleg.xml.XMLRequest;
@@ -63,57 +57,29 @@ public class DefaultConfigurationTest {
 
 	@Test
 	public void testEndpoints() throws Exception {
-		DefaultConfiguration configuration = new DefaultConfiguration();
 		Collection<String> endpoints = new ArrayList<>();
-		
-		for (Class<?> endpoint : configuration.endpoints()) {
-			endpoints.add(endpoint.getName());
-		}
-		
-		assertTrue(endpoints.contains(DefaultConfigurationTestEndpoint1.class.getName()));
-		assertTrue(!endpoints.contains(DefaultConfigurationTestEndpoint2.class.getName()));
-		assertTrue(!endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint3"));
-		assertTrue(!endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint4"));
-		
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		Thread.currentThread().setContextClassLoader(new ClassLoader(loader) {});
+
+		// Running on a Servlet container with the standard web application layout
 		ServletTester tester = new ServletTester();
 		tester.setContextPath("/bootleg");
 		tester.addFilter(BootlegFilter.class, "/*", 0);
 		tester.addServlet(DefaultServlet.class, "/");
 		tester.start();
-		configuration = new DefaultConfiguration();
 		ServletContextHandler context = tester.getContext();
-		configuration.init(context.getServletContext());
-		endpoints = new ArrayList<>();
-		
-		for (Class<?> endpoint : configuration.endpoints()) {
-			endpoints.add(endpoint.getName());
-		}
-		
-		assertTrue(endpoints.contains(DefaultConfigurationTestEndpoint1.class.getName()));
-		assertTrue(!endpoints.contains(DefaultConfigurationTestEndpoint2.class.getName()));
-		assertTrue(!endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint3"));
-		assertTrue(!endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint4"));
-		
-		List<URL> urls = new ArrayList<>();
-		
+
 		for (String path : Environment.getProperty("java.class.path").split(File.pathSeparator)) {
-			urls.add(new File(path).toURI().toURL());
-		}
-		
-		for (URL url : urls) {
-			if (url.getPath().endsWith("target/test-classes/")) {
-				context.setResourceBase(url.getPath());
-				Thread.currentThread().setContextClassLoader(
-						new ClassLoader(URLClassLoader.newInstance(new URL[] {
-								new URL(url + "WEB-INF/classes/"), 
-								new URL(url + "WEB-INF/lib/bootleg-0.5.1-SNAPSHOT.jar")}, 
-								loader)) {});
+			if (path.endsWith("target/test-classes")) {
+				context.setResourceBase(path);
+				Thread.currentThread().setContextClassLoader(new ClassLoader(
+						URLClassLoader.newInstance(new URL[] {
+							new File(path).toURI().toURL(), 
+							new URL(new File(path).toURI().toURL() + "/WEB-INF/classes/"), 
+							new URL(new File(path).toURI().toURL() + "/WEB-INF/lib/bootleg-0.5.1-SNAPSHOT.jar")})) {});
 			}
 		}
-		
-		configuration = new DefaultConfiguration();
+
+		DefaultConfiguration configuration = new DefaultConfiguration();
 		configuration.init(context.getServletContext());
 		endpoints = new ArrayList<>();
 		
@@ -125,6 +91,42 @@ public class DefaultConfigurationTest {
 		assertTrue(!endpoints.contains(DefaultConfigurationTestEndpoint2.class.getName()));
 		assertTrue(endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint3"));
 		assertTrue(endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint4"));
+		
+		// URLClassLoader
+		for (String path : Environment.getProperty("java.class.path").split(File.pathSeparator)) {
+			if (path.endsWith("target/test-classes")) {
+				context.setResourceBase(path);
+				Thread.currentThread().setContextClassLoader(
+						URLClassLoader.newInstance(new URL[] {
+								new URL(new File(path).toURI().toURL() + "WEB-INF/classes/")}));
+			}
+		}
+		
+		configuration = new DefaultConfiguration();
+		endpoints = new ArrayList<>();
+		
+		for (Class<?> endpoint : configuration.endpoints()) {
+			endpoints.add(endpoint.getName());
+		}
+		
+		assertTrue(!endpoints.contains(DefaultConfigurationTestEndpoint1.class.getName()));
+		assertTrue(!endpoints.contains(DefaultConfigurationTestEndpoint2.class.getName()));
+		assertTrue(!endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint3"));
+		assertTrue(endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint4"));
+		
+		// Standalone
+		Thread.currentThread().setContextClassLoader(new ClassLoader(loader) {});
+		configuration = new DefaultConfiguration();
+		endpoints = new ArrayList<>();
+		
+		for (Class<?> endpoint : configuration.endpoints()) {
+			endpoints.add(endpoint.getName());
+		}
+		
+		assertTrue(endpoints.contains(DefaultConfigurationTestEndpoint1.class.getName()));
+		assertTrue(!endpoints.contains(DefaultConfigurationTestEndpoint2.class.getName()));
+		assertTrue(!endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint3"));
+		assertTrue(!endpoints.contains("org.eiichiro.bootleg.DefaultConfigurationTestEndpoint4"));
 		
 		tester.stop();
 		Thread.currentThread().setContextClassLoader(loader);

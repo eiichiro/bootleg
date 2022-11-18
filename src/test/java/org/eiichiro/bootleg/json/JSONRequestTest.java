@@ -32,7 +32,7 @@ import org.junit.Test;
 public class JSONRequestTest {
 
 	private ServletTester tester = new ServletTester();
-	
+
 	/**
 	 * @throws java.lang.Exception
 	 */
